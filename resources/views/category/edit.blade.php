@@ -8,29 +8,24 @@
             <div class="col-lg-12 col-md-12 order-1">
                 <div class="row d-flex justify-content-center">
                     <div class="col-8">
-                        <form action="{{route('CategorySave')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{route('menuOptionUpdate')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card">
                                 <div class="card-header">
-                                    แก้ไขหมวดหมู่
+                                    แก้ไขราคาอาหาร
                                     <hr>
                                 </div>
                                 <div class="card-body">
                                     <div class="row g-3 mb-3">
                                         <div class="col-md-12">
-                                            <label for="name" class="form-label">ชื่อหมวดหมู่ : </label>
-                                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $info->name) }}">
+                                            <label for="name" class="form-label">ประเภทราคา : </label>
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="เช่น ธรรมดา พิเศษ" value="{{ old('type', $info->type) }}" required>
                                         </div>
                                     </div>
                                     <div class="row g-3 mb-3">
                                         <div class="col-md-12">
-                                            <label for="file" class="form-label">รูปภาพหมวดหมู่ : </label>
-                                            <div class="input-group mb-3">
-                                                <input class="form-control" type="file" id="file" name="file">
-                                                <a href="{{($info['files']) ? url('storage/'.$info['files']->file) : 'javascript:void(0);'}}" 
-                                                {{($info['files']) ? 'target="_blank" ' : ''}}
-                                                class="btn btn-outline-secondary" type="button"><i class="bx bx-search-alt-2"></i></a>
-                                            </div>
+                                            <label for="price" class="form-label">ราคา(บาท) : </label>
+                                            <input type="text" class="form-control" id="price" name="price" value="{{ old('price', $info->price) }}" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +33,7 @@
                                     <button type="submit" class="btn btn-outline-primary">บันทึก</button>
                                 </div>
                             </div>
-                            <input type="hidden" name="id" value="{{ old('id', $info->id) }}">
+                            <input type="hidden" name="id" value="{{$info->id}}">
                         </form>
                     </div>
                 </div>
